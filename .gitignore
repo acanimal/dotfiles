@@ -1,3 +1,2 @@
-# Ignore all by default
-# To add files just use `git add -f FILE`
-*
+# Ignore our dotifles bare repository
+.dotfiles
