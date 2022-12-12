@@ -75,4 +75,11 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+;; Start emacs with fullscreen
+;;(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
+;; Open treemacs at startup
+(add-hook 'window-setup-hook #'treemacs 'appen)
+
+;; Set node into the exce path
+;;(setq exec-path (append exec-path run'("nvm which current")))
