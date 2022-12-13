@@ -10,7 +10,7 @@ For terminal:
 - Oh My Zsh (https://ohmyz.sh)
 - Powerlevel10k (https://github.com/romkatv/powerlevel10k) Remember to update `.zshrc` file and set the new oh-my-zsh theme.
 - zsh-autosuggestions (https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)
-- zsh-syntax-highligthing (git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting)
+- zsh-syntax-highligthing (https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh)
 
 For NodeJS:
 - nvm (https://github.com/nvm-sh/nvm)
