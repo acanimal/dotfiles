@@ -1,7 +1,6 @@
-;;; customInitFile --- My custom emacs configuration file
+;;; init.el --- My custom Emacs configuration file
 ;;; Commentary:
-;;
-;; Emacs configuration
+;;   My custom Emacs configuration file
 ;;
 
 ;; ----------------------------------------------------------------------------
@@ -55,10 +54,24 @@
 (setq use-package-verbose t)
 
 ;; ----------------------------------------------------------------------------
-;; Set some nice theme
-(use-package tron-legacy-theme
+;; doom themes and modeline
+;; A set of beautifil themes to useful
+(use-package doom-themes
   :config
-  (load-theme 'tron-legacy t))
+  (load-theme 'doom-one t)
+  (doom-themes-visual-bell-config)
+  (setq doom-themes-treemacs-theme "Default")
+  (doom-themes-treemacs-config)
+  (doom-themes-org-config))
+;;
+;; doom-modeline
+;; A nice modeline
+(use-package doom-modeline
+	:hook (after-init . doom-modeline-mode))
+;;
+;; solaire-mode help us distinguis real from unreal bufers
+(use-package solaire-mode
+	:init (solaire-global-mode))
 
 ;; ----------------------------------------------------------------------------
 ;; which-key
@@ -66,14 +79,16 @@
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
-  :config (setq which-key-idle-delay 0.2))
+  :config
+	(setq which-key-idle-delay 0.7)
+	(dimmer-configure-which-key))
 
 ;; ----------------------------------------------------------------------------
 ;; dimmer
 ;; Highligh the selected buffer and obscure the rest
 (use-package dimmer
   :init (dimmer-mode t)
-  :config (setq dimmer-fraction 0.2))
+  :config (setq dimmer-fraction 0.3))
 
 ;; ----------------------------------------------------------------------------
 ;; Ivy, counsel and swiper
@@ -84,7 +99,25 @@
   :init (ivy-mode)
   :config
   (setq ivy-use-virtual-buffers t
-        ivy-count-format "%d/%d "))
+        ivy-count-format "%d/%d ")
+	(global-set-key "\C-s" 'swiper)
+	(global-set-key (kbd "C-c C-r") 'ivy-resume)
+	(global-set-key (kbd "<f6>") 'ivy-resume)
+	(global-set-key (kbd "M-x") 'counsel-M-x)
+	(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+	(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+	(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+	(global-set-key (kbd "<f1> o") 'counsel-describe-symbol))
+;;
+;; ivy-prescient to show most used options first
+(use-package ivy-prescient
+	:config (setq ivy-prescient-retain-classic-highlighting t)
+	:init (ivy-prescient-mode))
+;;
+;; ivy-rich show extra info in lists
+(use-package ivy-rich
+	:init (ivy-rich-mode)
+	:config (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
 
 ;; ----------------------------------------------------------------------------
 ;; company
@@ -110,6 +143,11 @@
 ;; - P to preview (peek) files and directories without open them
 ;; - ? to show help commands
 (use-package treemacs
+	:config
+	(setq
+	 treemacs-follow-after-init t
+	 treemacs-is-never-other-window t
+   treemacs-sorting 'alphabetic-case-insensitive-asc)
   :bind
     (:map global-map
       ("C-c t t" . treemacs)
@@ -121,9 +159,7 @@
 
 ;; Install all-the-icons package and integrate with treemacs
 (use-package all-the-icons
-  :after (ivy)
-  :if (display-graphic-p))
-
+	:if (display-graphic-p))
 (use-package treemacs-all-the-icons
   :after (treemacs all-the-icons))
 (use-package treemacs-icons-dired
@@ -131,18 +167,20 @@
   :init (treemacs-icons-dired-mode))
 
 ;; ----------------------------------------------------------------------------
-;; tree-sitter
+;; Tree-sitter
 ;; Syntax highlighting
 ;;
 ;; Note we need to install some modes to highlight
 (use-package tree-sitter
   :init (global-tree-sitter-mode)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-
 (use-package tree-sitter-langs
   :after tree-sitter)
 
-;; tree-sitter relies on typescript-mode to highlight code
+;; ----------------------------------------------------------------------------
+;; Languages mode
+;;
+;; TypeScript, note tree-sitter relies on typescript-mode to highlight code
 (use-package typescript-mode
   :after tree-sitter
   :config
@@ -166,10 +204,13 @@
 ;; lsp-mode
 ;; Client for LSP
 (use-package lsp-mode
-  :init (setq lsp-keymap-prefix "C-c l")
 	:config
-	(require 'dap-node)
-	(require 'dap-chrome)
+	;; do not use icons on terminal
+	(if (display-graphic-p)
+			(setq lsp-headerline-breadcrumb-icons-enable t)
+		(setq lsp-headerline-breadcrumb-icons-enable nil))
+	:init
+	(setq lsp-keymap-prefix "C-c l")
   :hook (
 				 ;; automatically start lsp for given modes
 				 (typescript-mode . lsp)
@@ -207,8 +248,15 @@
 ;; * Download extension from https://marketplace.visualstudio.com/items?itemName=ms-vscode.node-debug2
 ;; * Unzip that into the relevant location, e.g. unzip *.vsix -d ~/.emacs.d/.extension/vscode/ms-vscode.node-debug2
 (use-package dap-mode
-	:init (setq dap-auto-configure-mode t))
+	:init
+	(setq dap-auto-configure-mode t)
+	;; add the required languages support
+	(require 'dap-node)
+	(require 'dap-chrome))
 
+;; ----------------------------------------------------------------------------
+;; magit
+(use-package magit)
 
 ;; Other packages to test and install
 ;;
@@ -217,19 +265,16 @@
 ;;   :mode ("\\.md\\'" . markdown-mode)
 ;;   :hook (markdown-mode . auto-fill-mode))
 
-
-;; magit
+;; restclient
+;; rjsx-mode
 ;; focus mode
 ;; evil?
 ;; minimap
 ;; yasnippet
 ;; apheleia (format code)
-;; ivy-rich
 ;; all-the-icons-ivy
 ;; multiple-cursors
 
 
 ;; ----------------------------------------------------------------------------
-;; end of configuration
-;; ----------------------------------------------------------------------------
-
+;;; init.el ends here
