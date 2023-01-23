@@ -314,6 +314,14 @@
 ;; magit
 (use-package magit)
 
+;; ----------------------------------------------------------------------------
+;; restclient
+;; make http request
+(use-package restclient
+  ;; activate only when file extension is .http
+  :config (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode)))
+
+
 ;; restclient
 ;; rjsx-mode
 ;; focus mode
