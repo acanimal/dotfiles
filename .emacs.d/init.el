@@ -3,48 +3,56 @@
 ;;   My custom Emacs configuration file
 ;;
 
-;; ----------------------------------------------------------------------------
-;; Some basic configuration
+;;; Code:
 
-;; Hide some components
-(tool-bar-mode -1)
+;; ----------------------------------------------------------------------------
+;; Set some basic configuration options
+
+(tool-bar-mode -1) ;; Hide some components
 (menu-bar-mode -1)
 (tab-bar-mode -1)
 (scroll-bar-mode -1)
 
-;; Hide welcome screen
-(setq inhibit-startup-screen t)
+(setq inhibit-startup-screen t) ;; Hide welcome screen
+(setq make-backup-files nil) ;; Disabel creation of backup files
 
-;; Same desktop session (frame, windows, etc)
-;; (desktop-save-mode t)
+;; (desktop-save-mode t) ;; Save desktop session (frame, windows, etc)
 
-;; Show line curos mode
-(global-hl-line-mode t)
+(global-hl-line-mode t) ;; Show line cursor
+(blink-cursor-mode 0) ;; Blink cursor forever
+(line-number-mode t) ;; Show line modeline
+(column-number-mode t) ;; Show column in modeline
+(global-display-line-numbers-mode t) ;; Always show line numbers
 
-;; Blink cursor forever
-(blink-cursor-mode 0)
+(setq-default indent-tabs-mode nil) ;; Do not indent with tabs
+(setq-default tab-width 2) ;; Set tab width
+(setq tab-always-indent 'complete) ;; TAB tries to indent and if already indented then try to complete
 
-;; Show line and column in mode line
-(line-number-mode t)
-(column-number-mode t)
-(global-display-line-numbers-mode t)
-
-;; tabs and indent
-(setq-default tab-width 2)
-(setq-default indent-tabs-mode t)
+;; Oter visual options for GUI macosx
+(when (and (equal system-type 'darwin) (display-graphic-p))
+  ;; We can change keys on GUI macosx
+  ;; (setq mac-command-modifier 'meta)
+  ;; (setq mac-option-modifier 'super)
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)) ;; Make title bar more "native" look
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  ;; We can change the fonts here
+  (when (member "Cascadia Code" (font-family-list))
+    (add-to-list 'initial-frame-alist '(font . "Cascadia Code-14"))
+    (add-to-list 'default-frame-alist '(font . "Cascadia Code-14"))))
 
 ;; ----------------------------------------------------------------------------
 ;; Set package repositories and configure use-package
 (require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")))
+(setq package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+                         ("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")))
 (package-initialize)
 
 ;; Configure use-package
-;;Unless packages are not available locally, dont refresh package archives
-(unless package-archive-contents
-  (package-refresh-contents))
+;; Unless packages are not available locally, dont refresh package archives
+;;(unless package-archive-contents
+;;  (package-refresh-contents))
 
 ;; Initialize use-package on non-Linux platforms
 (unless (package-installed-p 'use-package)
@@ -52,6 +60,27 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
+
+;; ----------------------------------------------------------------------------
+;; Use only for benchmark purposes
+;; (use-package benchmark-init
+;;   :ensure t
+;;   :config
+;;   ;; To disable collection of benchmark data after init is done.
+;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
+;; ----------------------------------------------------------------------------
+;; dashboard
+;; Set of beautifil themes to useful
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-items '((recents  . 5)
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (agenda . 5)
+                          (registers . 5))))
 
 ;; ----------------------------------------------------------------------------
 ;; doom themes and modeline
@@ -82,6 +111,20 @@
   :config
 	(setq which-key-idle-delay 0.7)
 	(dimmer-configure-which-key))
+
+;; ----------------------------------------------------------------------------
+;; helpful
+;; better emaacs documentation
+(use-package helpful
+  :init
+  (global-set-key (kbd "C-h f") #'helpful-callable)
+  (global-set-key (kbd "C-h v") #'helpful-variable)
+  (global-set-key (kbd "C-h k") #'helpful-key)
+  (global-set-key (kbd "C-c C-d") #'helpful-at-point)
+  (global-set-key (kbd "C-h F") #'helpful-function)
+  (global-set-key (kbd "C-h C") #'helpful-command)
+  (setq counsel-describe-function-function #'helpful-callable)
+  (setq counsel-describe-variabLe-function #'helpful-variable))
 
 ;; ----------------------------------------------------------------------------
 ;; dimmer
@@ -148,10 +191,12 @@
 	 treemacs-follow-after-init t
 	 treemacs-is-never-other-window t
    treemacs-sorting 'alphabetic-case-insensitive-asc)
+  (treemacs-resize-icons 12)
   :bind
     (:map global-map
       ("C-c t t" . treemacs)
-      ("C-c t s" . treemacs-select-window)))
+      ("C-c t s" . treemacs-select-window)
+			("C-c t w" . treemacs-edit-workspaces)))
 
 ;; Integrate treemacs and projectile
 (use-package treemacs-projectile
@@ -184,6 +229,7 @@
 (use-package typescript-mode
   :after tree-sitter
   :config
+  (setq typescript-indent-level 2)
   ;; we choose this instead of tsx-mode so that eglot can automatically figure out language for server
   ;; see https://github.com/joaotavora/eglot/issues/624 and https://github.com/joaotavora/eglot#handling-quirky-servers
   (define-derived-mode typescriptreact-mode typescript-mode "TypeScript TSX")
@@ -255,15 +301,18 @@
 	(require 'dap-chrome))
 
 ;; ----------------------------------------------------------------------------
+;; multiple-cursors
+;; Multiline editing.
+(use-package multiple-cursors
+  :bind
+      (:map global-map
+      ("C->" . mc/mark-next-like-this)
+      ("C-<" . mc/mark-previous-like-this)
+			("C-c C-<" . mc/mark-all-like-this)))
+
+;; ----------------------------------------------------------------------------
 ;; magit
 (use-package magit)
-
-;; Other packages to test and install
-;;
-;;
-;; (use-package markdown-mode
-;;   :mode ("\\.md\\'" . markdown-mode)
-;;   :hook (markdown-mode . auto-fill-mode))
 
 ;; restclient
 ;; rjsx-mode
@@ -274,7 +323,6 @@
 ;; apheleia (format code)
 ;; all-the-icons-ivy
 ;; multiple-cursors
-
 
 ;; ----------------------------------------------------------------------------
 ;;; init.el ends here

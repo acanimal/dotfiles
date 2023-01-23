@@ -14,10 +14,28 @@ For terminal:
 
 For NodeJS:
 - nvm (https://github.com/nvm-sh/nvm)
-- git (brew install git)
+- git (`brew install git`)
 
 Editors:
-- emacs (brew cask install emacs)
+- emacs (`brew cask install emacs`)
 - doomemacs (https://github.com/doomemacs/doomemacs)
 - vscode (https://code.visualstudio.com/)
+
+Other:
+- ripgrep command line tool (`brew install ripgrep`)
+- to install fonts with Homebrew just install `brew tap homebrew/cask-fonts`. Now you can search for fonst with `brew search font- | grep cascadia` and install with `brew install font-cascadia-code --cask`
+
+
+## Brew install script
+
+```
+brew tap homebrew/cask-fonts
+brew install "git"
+brew install "ripgrep"
+brew install cask "iterm2"
+brew install cask "emacs"
+brew install cask "slack"
+brew install cask "spotify"
+brew install cask "whatsapp"
+```
 
