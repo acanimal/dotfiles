@@ -36,9 +36,9 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)) ;; Make title bar more "native" look
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; We can change the fonts here
-  (when (member "Cascadia Code" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Cascadia Code-14"))
-    (add-to-list 'default-frame-alist '(font . "Cascadia Code-14"))))
+  (when (member "Fira Code" (font-family-list))
+    (add-to-list 'initial-frame-alist '(font . "Fira Code-13"))
+    (add-to-list 'default-frame-alist '(font . "Fira Code-13"))))
 
 ;; ----------------------------------------------------------------------------
 ;; Set package repositories and configure use-package
@@ -87,11 +87,21 @@
 ;; A set of beautifil themes to useful
 (use-package doom-themes
   :config
-  (load-theme 'doom-one t)
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-dark+ t)
+
+  ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
-  (setq doom-themes-treemacs-theme "Default")
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
   (doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
+
 ;;
 ;; doom-modeline
 ;; A nice modeline
@@ -129,9 +139,12 @@
 ;; ----------------------------------------------------------------------------
 ;; dimmer
 ;; Highligh the selected buffer and obscure the rest
-(use-package dimmer
-  :init (dimmer-mode t)
-  :config (setq dimmer-fraction 0.3))
+;;
+;; FIXME: Disabled because obscure buffer when a popup is shown
+;;
+;; (use-package dimmer
+;;   :init (dimmer-mode t)
+;;   :config (setq dimmer-fraction 0.3))
 
 ;; ----------------------------------------------------------------------------
 ;; Ivy, counsel and swiper
