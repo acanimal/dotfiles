@@ -37,8 +37,8 @@
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; We can change the fonts here
   (when (member "Fira Code" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Fira Code-13"))
-    (add-to-list 'default-frame-alist '(font . "Fira Code-13"))))
+    (add-to-list 'initial-frame-alist '(font . "Fira Code-15"))
+    (add-to-list 'default-frame-alist '(font . "Fira Code-15"))))
 
 ;; ----------------------------------------------------------------------------
 ;; Set package repositories and configure use-package
@@ -90,7 +90,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-dark+ t)
+  (load-theme 'doom-one t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -181,7 +181,8 @@
 (use-package company
   :init (global-company-mode)
   :config
-  (setq company-minimum-prefix-length 2))
+  (setq company-minimum-prefix-length 1
+        company-idle-delay 0))
 
 ;; ----------------------------------------------------------------------------
 ;; Projectile
@@ -261,6 +262,11 @@
 
 ;; ----------------------------------------------------------------------------
 ;; lsp-mode
+
+;; Next settings are need to tunning performance in lsp-mode. See https://emacs-lsp.github.io/lsp-mode/page/performance/
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
 ;; Client for LSP
 (use-package lsp-mode
 	:config
