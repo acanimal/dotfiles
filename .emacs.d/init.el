@@ -8,25 +8,27 @@
 ;; ----------------------------------------------------------------------------
 ;; Set some basic configuration options
 
+(setq inhibit-startup-screen t) ;; Hide welcome screen
+(setq make-backup-files nil) ;; Disabel creation of backup files
+
 (tool-bar-mode -1) ;; Hide some components
 (menu-bar-mode -1)
 (tab-bar-mode -1)
 (scroll-bar-mode -1)
-
-(setq inhibit-startup-screen t) ;; Hide welcome screen
-(setq make-backup-files nil) ;; Disabel creation of backup files
-
-;; (desktop-save-mode t) ;; Save desktop session (frame, windows, etc)
 
 (global-hl-line-mode t) ;; Show line cursor
 (blink-cursor-mode 0) ;; Blink cursor forever
 (line-number-mode t) ;; Show line modeline
 (column-number-mode t) ;; Show column in modeline
 (global-display-line-numbers-mode t) ;; Always show line numbers
+(global-display-fill-column-indicator-mode t) ;; Show fill column indicator
+(setq fill-column 80) ;; fill column size
 
 (setq-default indent-tabs-mode nil) ;; Do not indent with tabs
 (setq-default tab-width 2) ;; Set tab width
 (setq tab-always-indent 'complete) ;; TAB tries to indent and if already indented then try to complete
+
+(desktop-save-mode t) ;; Save desktop session (frame, windows, etc)
 
 ;; Oter visual options for GUI macosx
 (when (and (equal system-type 'darwin) (display-graphic-p))
@@ -37,8 +39,8 @@
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; We can change the fonts here
   (when (member "Fira Code" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Fira Code-15"))
-    (add-to-list 'default-frame-alist '(font . "Fira Code-15"))))
+    (add-to-list 'initial-frame-alist '(font . "Fira Code-14"))
+    (add-to-list 'default-frame-alist '(font . "Fira Code-14"))))
 
 ;; ----------------------------------------------------------------------------
 ;; Set package repositories and configure use-package
