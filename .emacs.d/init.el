@@ -121,8 +121,7 @@
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-	(setq which-key-idle-delay 0.7)
-	(dimmer-configure-which-key))
+	(setq which-key-idle-delay 0.7))
 
 ;; ----------------------------------------------------------------------------
 ;; helpful
@@ -142,11 +141,25 @@
 ;; dimmer
 ;; Highligh the selected buffer and obscure the rest
 ;;
-;; FIXME: Disabled because obscure buffer when a popup is shown
-;;
-;; (use-package dimmer
-;;   :init (dimmer-mode t)
-;;   :config (setq dimmer-fraction 0.3))
+(use-package dimmer
+  :init (dimmer-mode t)
+  :config
+  (setq dimmer-fraction 0.3
+        dimmer-adjustment-mode :foreground)
+  (dimmer-configure-which-key))
+;;  (dimmer-configure-company-box))
+
+;; Next is a fix to avoid dimmer to dim popups
+(defun dimmer-lsp-ui-doc-p ()
+  (string-prefix-p " *lsp-ui-doc-" (buffer-name)))
+(add-to-list 'dimmer-prevent-dimming-predicates #'dimmer-lsp-ui-doc-p)
+
+(defun advices/dimmer-config-change-handler ()
+  (dimmer--dbg-buffers 1 "dimmer-config-change-handler")
+  (let ((ignore (cl-some (lambda (f) (and (fboundp f) (funcall f)))
+                         dimmer-prevent-dimming-predicates)))
+    (dimmer-process-all (not ignore))))
+(advice-add 'dimmer-config-change-handler :override #'advices/dimmer-config-change-handler)
 
 ;; ----------------------------------------------------------------------------
 ;; Ivy, counsel and swiper
@@ -193,6 +206,8 @@
   :init (projectile-mode)
   :bind (:map projectile-mode-map
 							("C-c p" . projectile-command-map)))
+
+(use-package rg)
 
 ;; ----------------------------------------------------------------------------
 ;; treemacs
@@ -246,6 +261,8 @@
   :after tree-sitter
   :config
   (setq typescript-indent-level 2)
+  (setq js-indent-level 2)
+  
   ;; we choose this instead of tsx-mode so that eglot can automatically figure out language for server
   ;; see https://github.com/joaotavora/eglot/issues/624 and https://github.com/joaotavora/eglot#handling-quirky-servers
   (define-derived-mode typescriptreact-mode typescript-mode "TypeScript TSX")
@@ -355,3 +372,16 @@
 
 ;; ----------------------------------------------------------------------------
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(rg which-key use-package typescript-mode treemacs-projectile treemacs-icons-dired treemacs-all-the-icons tree-sitter-langs solaire-mode restclient multiple-cursors magit lsp-ui lsp-ivy ivy-rich ivy-prescient helpful flycheck doom-themes doom-modeline dimmer dashboard dap-mode counsel company)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
