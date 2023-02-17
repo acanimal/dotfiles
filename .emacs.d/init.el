@@ -223,6 +223,7 @@
 	 treemacs-is-never-other-window t
    treemacs-sorting 'alphabetic-case-insensitive-asc)
   (treemacs-resize-icons 12)
+  (treemacs-project-follow-mode t)
   :bind
     (:map global-map
       ("C-c t t" . treemacs)
@@ -293,6 +294,8 @@
 	(if (display-graphic-p)
 			(setq lsp-headerline-breadcrumb-icons-enable t)
 		(setq lsp-headerline-breadcrumb-icons-enable nil))
+  ;; lsp performance. If set to true can cause a performance hit
+  (setq lsp-log-io nil)
 	:init
 	(setq lsp-keymap-prefix "C-c l")
   :hook (
@@ -372,16 +375,3 @@
 
 ;; ----------------------------------------------------------------------------
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(rg which-key use-package typescript-mode treemacs-projectile treemacs-icons-dired treemacs-all-the-icons tree-sitter-langs solaire-mode restclient multiple-cursors magit lsp-ui lsp-ivy ivy-rich ivy-prescient helpful flycheck doom-themes doom-modeline dimmer dashboard dap-mode counsel company)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
