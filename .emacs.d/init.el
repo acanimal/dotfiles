@@ -23,6 +23,7 @@
 (global-display-line-numbers-mode t) ;; Always show line numbers
 (global-display-fill-column-indicator-mode t) ;; Show fill column indicator
 (setq fill-column 80) ;; fill column size
+(delete-selection-mode t) ;; Inserting text while the mark is active causes the selected text to be deleted first.
 
 (setq-default indent-tabs-mode nil) ;; Do not indent with tabs
 (setq-default tab-width 2) ;; Set tab width
