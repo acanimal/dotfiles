@@ -282,6 +282,14 @@
   :init (global-flycheck-mode))
 
 ;; ----------------------------------------------------------------------------
+;; apheleia: auto-format different source code files extremely intelligently
+;; https://github.com/radian-software/apheleia
+;; You need to intall prettier in your project or system.
+(use-package apheleia
+  :config
+  (apheleia-global-mode +1))
+
+;; ----------------------------------------------------------------------------
 ;; lsp-mode
 
 ;; Next settings are need to tunning performance in lsp-mode. See https://emacs-lsp.github.io/lsp-mode/page/performance/
@@ -376,3 +384,17 @@
 
 ;; ----------------------------------------------------------------------------
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(apheleia which-key use-package typescript-mode treemacs-projectile treemacs-icons-dired treemacs-all-the-icons tree-sitter-langs solaire-mode rg restclient multiple-cursors magit lsp-ui lsp-ivy ivy-rich ivy-prescient helpful flycheck doom-themes doom-modeline dimmer dashboard dap-mode counsel company))
+ '(warning-suppress-types '((lsp-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
