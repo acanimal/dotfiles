@@ -54,8 +54,8 @@
 
 ;; Configure use-package
 ;; Unless packages are not available locally, dont refresh package archives
-;;(unless package-archive-contents
-;;  (package-refresh-contents))
+(unless package-archive-contents
+  (package-refresh-contents))
 
 ;; Initialize use-package on non-Linux platforms
 (unless (package-installed-p 'use-package)
