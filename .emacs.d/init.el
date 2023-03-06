@@ -31,6 +31,10 @@
 
 (desktop-save-mode t) ;; Save desktop session (frame, windows, etc)
 
+;; This avoids the ugly accidentally action of scaling text with using the trackpad
+(unbind-key "<C-wheel-up>")
+(unbind-key "<C-wheel-down>")
+
 ;; Oter visual options for GUI macosx
 (when (and (equal system-type 'darwin) (display-graphic-p))
   ;; We can change keys on GUI macosx
