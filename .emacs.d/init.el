@@ -29,7 +29,9 @@
 (setq-default tab-width 2) ;; Set tab width
 (setq tab-always-indent 'complete) ;; TAB tries to indent and if already indented then try to complete
 
-(desktop-save-mode t) ;; Save desktop session (frame, windows, etc)
+;; Save desktop session (frame, windows, etc)
+;; Disabled because it is time consuming when opening buffer that are "hidden" but requires modes like LSP
+;; (desktop-save-mode t)
 
 ;; This avoids the ugly accidentally action of scaling text with using the trackpad
 (unbind-key "<C-wheel-up>")
@@ -44,8 +46,8 @@
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; We can change the fonts here
   (when (member "Fira Code" (font-family-list))
-    (add-to-list 'initial-frame-alist '(font . "Fira Code-14"))
-    (add-to-list 'default-frame-alist '(font . "Fira Code-14"))))
+    (add-to-list 'initial-frame-alist '(font . "Fira Code-13"))
+    (add-to-list 'default-frame-alist '(font . "Fira Code-13"))))
 
 ;; ----------------------------------------------------------------------------
 ;; Set package repositories and configure use-package
