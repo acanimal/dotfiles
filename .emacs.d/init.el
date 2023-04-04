@@ -377,30 +377,16 @@
   ;; activate only when file extension is .http
   :config (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode)))
 
+(use-package yaml-mode
+  ;; activate only when file extension is .yml
+  :config (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
-;; restclient
 ;; rjsx-mode
 ;; focus mode
 ;; evil?
 ;; minimap
 ;; yasnippet
-;; apheleia (format code)
 ;; all-the-icons-ivy
-;; multiple-cursors
 
 ;; ----------------------------------------------------------------------------
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(apheleia which-key use-package typescript-mode treemacs-projectile treemacs-icons-dired treemacs-all-the-icons tree-sitter-langs solaire-mode rg restclient multiple-cursors magit lsp-ui lsp-ivy ivy-rich ivy-prescient helpful flycheck doom-themes doom-modeline dimmer dashboard dap-mode counsel company))
- '(warning-suppress-types '((lsp-mode))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
