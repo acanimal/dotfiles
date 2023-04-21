@@ -30,12 +30,11 @@
 (setq tab-always-indent 'complete) ;; TAB tries to indent and if already indented then try to complete
 
 ;; Save desktop session (frame, windows, etc)
-;; Disabled because it is time consuming when opening buffer that are "hidden" but requires modes like LSP
-;; (desktop-save-mode t)
+(desktop-save-mode t)
 
 ;; This avoids the ugly accidentally action of scaling text with using the trackpad
-(unbind-key "<C-wheel-up>")
-(unbind-key "<C-wheel-down>")
+;; (unbind-key "<C-wheel-up>")
+;; (unbind-key "<C-wheel-down>")
 
 ;; Oter visual options for GUI macosx
 (when (and (equal system-type 'darwin) (display-graphic-p))
@@ -313,6 +312,17 @@
   (setq lsp-log-io nil)
 	:init
 	(setq lsp-keymap-prefix "C-c l")
+  ;; Fix for an issue with TypeScript LSP server. See https://github.com/typescript-language-server/typescript-language-server/issues/559
+  (advice-add 'json-parse-string :around
+              (lambda (orig string &rest rest)
+                (apply orig (s-replace "\\u0000" "" string)
+                       rest)))
+  (advice-add 'json-parse-buffer :around
+              (lambda (oldfn &rest args)
+	              (save-excursion 
+                  (while (search-forward "\\u0000" nil t)
+                    (replace-match "" nil t)))
+		            (apply oldfn args)))
   :hook (
 				 ;; automatically start lsp for given modes
 				 (typescript-mode . lsp)
