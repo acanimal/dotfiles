@@ -113,7 +113,7 @@ export NVM_DIR="$HOME/.nvm"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Add doomemacs to the path
-export PATH="$HOME/.emacs.d.doom/bin:$PATH"
+export PATH="$HOME/.emacs.doom.d/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
