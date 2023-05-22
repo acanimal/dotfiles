@@ -26,9 +26,11 @@ Editors:
 - doomemacs (https://github.com/doomemacs/doomemacs) I like to test things on this emacs distro.
 - chemacs2 (https://github.com/plexus/chemacs2) Emacs version switcher that allows to work with more than one version of emacs.
 - vscode (https://code.visualstudio.com/)
+- Helix editor
+- NeoVim editor 
 
 Other:
-- ripgrep command line tool (`brew install ripgrep`)
+- command line tool: ripgrep, coreutils, fd
 - to install fonts with Homebrew just install `brew tap homebrew/cask-fonts`. Now you can search for fonst with `brew search font- | grep cascadia` and install with `brew install font-cascadia-code --cask`
 
 
@@ -40,8 +42,13 @@ Run the next commands to install software via `brew`:
 brew tap homebrew/cask-fonts
 brew install "git"
 brew install "ripgrep"
+brew install "coreutils"
+brew install "fd"
+brew install "fzf"
 brew install cask "iterm2"
 brew install cask "emacs"
+brew install cask "helix"
+brew install cask "neovim"
 brew install cask "slack"
 brew install cask "spotify"
 brew install cask "whatsapp"
@@ -49,6 +56,14 @@ brew install cask "whatsapp"
 
 Open vanilla emacs with `emacs &` and let all package dependencies to be installed. Once pacakges are installed run `M-x nerd-icons-install-fonts` to install fonts needed by doomemacs-modeline package.
 
-Install doomemacs into `.emacs.doom.d` folder. Then run `> doom install`. The custom configuration for doomemacs if found at `.doom.d` folder.
+Install doomemacs into `.emacs.doom.d` folder (follow the installation instructions).
+Then run `> doom install`.
+The custom configuration for doomemacs if found at `.doom.d` folder.
 
+### About install NeoVim
 
+Instal vim-plug package manager:
+```
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
