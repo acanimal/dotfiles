@@ -52,6 +52,8 @@ brew install "neovim"
 brew install cask "slack"
 brew install cask "spotify"
 brew install cask "whatsapp"
+brew install font-cascadia-code --cask
+brew install font-hack-nerd-font --cask
 ```
 
 Open vanilla emacs with `emacs &` and let all package dependencies to be installed. Once pacakges are installed run `M-x nerd-icons-install-fonts` to install fonts needed by doomemacs-modeline package.
@@ -60,10 +62,3 @@ Install doomemacs into `.emacs.doom.d` folder (follow the installation instructi
 Then run `> doom install`.
 The custom configuration for doomemacs if found at `.doom.d` folder.
 
-### About install NeoVim
-
-Instal vim-plug package manager:
-```
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```

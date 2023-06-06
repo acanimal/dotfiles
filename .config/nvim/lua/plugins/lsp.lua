@@ -31,24 +31,32 @@ return {
       vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, attach_opts)
       vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, attach_opts)
       vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, attach_opts)
-      vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-      vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
+      vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, attach_opts)
+      vim.keymap.set('n', 'gr', vim.lsp.buf.references, attach_opts)
+      vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, attach_opts)
       vim.keymap.set('n', 'so', require('telescope.builtin').lsp_references, attach_opts)
     end
-    
+
     -- Enable the following language servers
-    local servers = { 'tsserver' }
+    local servers = { 'tsserver', 'lua_ls' }
     for _, lsp in ipairs(servers) do
       lspconfig[lsp].setup {
         on_attach = on_attach,
         capabilities = capabilities,
       }
     end
-   
+    -- Configuration for lua server
+    lspconfig.lua_ls.setup({
+      settings = {
+        Lua = {
+          diagnostics = { globals = {'vim'} }
+        }
+      }
+    })
+
     -- luasnip setup
     local luasnip = require 'luasnip'
-    
+
     -- nvim-cmp setup
     local cmp = require 'cmp'
     cmp.setup {
