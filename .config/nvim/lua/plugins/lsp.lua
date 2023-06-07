@@ -33,7 +33,7 @@ return {
       vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, attach_opts)
       vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, attach_opts)
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, attach_opts)
-      vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, attach_opts)
+      vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, attach_opts)
       vim.keymap.set('n', 'so', require('telescope.builtin').lsp_references, attach_opts)
     end
 
