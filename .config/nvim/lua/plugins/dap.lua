@@ -38,35 +38,38 @@
       dapui.close()
     end
 
-    -- configure adapter for node
-    dap.adapters["node-terminal"] = {
+    require("dap-vscode-js").setup({
+      debugger_path = require('mason-registry').get_package('js-debug-adapter'):get_install_path(),
+      debugger_cmd = { "js-debug-adapter" },
+      adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
+      log_file_path = require('mason-registry').get_package('js-debug-adapter'):get_install_path() .. "/dap_vscode_js.log", -- Path for file logging
+      log_file_level = vim.log.levels.DEBUG, -- Logging level for output to file. Set to false to disable file logging.
+      log_console_level = vim.log.levels.DEBUG -- Logging level for output to console. Set to false to disable console output.
+    })
+
+    -- We need to redefine pwd-node adapter due some issue with vscode-js-debug
+    -- See: https://github.com/mxsdev/nvim-dap-vscode-js/issues/42
+    dap.adapters["pwa-node"] = {
       type = "server",
       host = "localhost",
       port = "${port}",
       executable = {
+        -- If vscode-js-debug is installed with mason it is in the path 
         command = "js-debug-adapter",
-        args = {"${port}"}
-      }
+        args = {"${port}"},
+        }
     }
 
-    dap.configurations.typescript = {
-      {
-        type= "node-terminal",
-        request= "launch",
-        name="Worker Automatic Vetting",
-        runtimeArgs={
-          "-r", "ts-node/register"
-        },
-        cwd="${workspaceFolder}/paclages/api",
-        env={TS_NODE_PROJECT="${workspaceFolder}/packages/api/tsconfig.json"},
-        args={"${workspaceFolder}/packages/api/workers/AutomaticVetting/run.ts"}
-      }
-    }
+    -- associate all "node" configurations to typescript and javascript filetypes
+    require('dap.ext.vscode').load_launchjs(nil, {
+      node = {'typescript', 'javascript'}
+    })
 
-    -- note we attach the "node" configuration types to TS and JS configurations
-    -- require('dap.ext.vscode').load_launchjs(nil, {
-    --   node = {'typescript', 'javascript'}
-    -- })
+    -- ensure all configurations are pwa-node to work properly with dap-vscode-js
+    for i,config in ipairs(dap.configurations.typescript) do
+      config["type"] = "pwa-node"
+    end
+
   end
 }
 

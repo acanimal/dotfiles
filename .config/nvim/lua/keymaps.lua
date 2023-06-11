@@ -12,3 +12,6 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 vim.diagnostic.config({
   update_in_insert = true
 })
+
+vim.keymap.set('n', '//', '<cmd>nohl<cr>') -- Remove the search highlight
+
