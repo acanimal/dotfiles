@@ -6,7 +6,8 @@ return {
  	config = function()
 		require("lualine").setup{
 			options = {
-				theme = "tokyonight",
+				-- theme = "tokyonight",
+        thene = "kanagawa",
 				disabled_filetypes = {'nerdtree'}
 			},
 		}

@@ -1,3 +1,4 @@
+vim.opt.shortmess = 'I' -- hide intro message on startup
 vim.opt.termguicolors = true -- term colors
 vim.opt.number = true -- Show numbers
 vim.opt.relativenumber = true -- shot relative numbers
@@ -11,3 +12,4 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.hlsearch = true -- set highlight on search
 vim.opt.cursorline = true -- highlight current cursor line
+
