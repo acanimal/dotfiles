@@ -7,6 +7,6 @@ return {
         'nerdtree',
       }
     })
-      vim.cmd("hi IlluminatedWordRead guibg=#6A6A6A")
+    vim.cmd("hi IlluminatedWordRead gui=reverse")
   end
 }

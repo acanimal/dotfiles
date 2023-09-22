@@ -1,5 +1,5 @@
 return {
-  'nvim-telescope/telescope.nvim', tag = '0.1.1',
+  'nvim-telescope/telescope.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },
 	config = function()
 		local builtin = require('telescope.builtin')
@@ -9,6 +9,7 @@ return {
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Find in help pages" })
     vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { desc = "Find LSP references" })
     vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = "Find command" })
+    vim.keymap.set('n', '<leader>fs', builtin.colorscheme, { desc = "List available colorscheme" })
   end
 }
 
