@@ -14,4 +14,7 @@ vim.diagnostic.config({
 })
 
 vim.keymap.set('n', '//', '<cmd>nohl<cr>', { desc = 'Remove highlight search mark' }) -- Remove the search highlight
+-- Buffers movement
+vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = "Buffer previous" })
+vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = "Buffer next" })
 
