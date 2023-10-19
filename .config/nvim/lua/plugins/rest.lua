@@ -1,9 +1,7 @@
 return {
   "rest-nvim/rest.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
-  keys = {
-    { "<leader>rr", "<Plug>RestNvim", desc = "Run request" },
-  },
+  commit = "8b62563",
   config = function()
     require('rest-nvim').setup({
       -- Open request results in a horizontal split
@@ -34,11 +32,15 @@ return {
         },
       },
       -- Jump to request line on run
-      jump_to_request = false,
+      jump_to_request = true,
       env_file = '.env',
       custom_dynamic_variables = {},
       yank_dry_run = true,
     })
+
+    vim.keymap.set('n', '<leader>rr', '<Plug>RestNvim', { desc = 'Rest execute request' })
+    vim.keymap.set('n', '<leader>rp', '<Plug>RestNvimPreview', { desc = 'Rest  preview curl' })
+    vim.keymap.set('n', '<leader>rl', '<Plug>RestNvimLast', { desc = 'Rest repeat last request' })
   end
 }
 

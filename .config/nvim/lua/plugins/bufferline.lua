@@ -3,17 +3,17 @@ return {
 	dependencies = {
 		'nvim-tree/nvim-web-devicons'
 	},
- 	opts = {
-    options = {
-      offsets = {
-        {
-          filetype = "NvimTree",
-          text = "",
-          text_align = "left",
-          separator = true
+  config = function()
+    require("bufferline").setup {
+      options = {
+        offsets = {
+          {
+            filetype = "NvimTree",
+            text = "File Explorer",
+          }
         }
       }
     }
-  }
+  end
 }
 
