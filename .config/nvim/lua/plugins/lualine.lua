@@ -1,15 +1,14 @@
 return {
   "nvim-lualine/lualine.nvim", -- statusline
-	dependencies = { 
+	dependencies = {
 		'nvim-tree/nvim-web-devicons'
 	},
  	config = function()
 		require("lualine").setup{
 			options = {
-				-- theme = "tokyonight",
-        thene = "kanagawa",
-				disabled_filetypes = {'nerdtree'}
-			},
+				theme = "tokyonight"
+        -- thene = "kanagawa"
+			}
 		}
 	end,
 }
