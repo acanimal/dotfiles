@@ -5,7 +5,7 @@ return {
   end,
   config = function()
     require('nvim-treesitter.configs').setup({
-      ensure_installed = { "http", "json" },
+      ensure_installed = { "http", "json", "javascript", "lua", "tsx", "typescript" },
       highlight = {
         enable = true
       }
