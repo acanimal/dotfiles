@@ -43,4 +43,3 @@ return {
     vim.keymap.set('n', '<leader>rl', '<Plug>RestNvimLast', { desc = 'Rest repeat last request' })
   end
 }
-
