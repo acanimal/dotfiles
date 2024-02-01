@@ -14,6 +14,11 @@ return {
 
     -- lsp config
     local lspconfig = require('lspconfig')
+    -- Show borders for lsp windows
+    local handlers = {
+      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'single' }),
+      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'single' }),
+    }
 
     -- configure keymaps once lsp is attached
     local on_attach = function(_, bufnr)
@@ -22,21 +27,15 @@ return {
       -- Buffer local mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
       local attach_opts = { silent = true, buffer = bufnr }
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, attach_opts)
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, attach_opts)
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, attach_opts)
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = bufnr, desc = "Go to declaration" })
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, attach_opts)
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, attach_opts)
+      vim.keymap.set('n', 'gr', vim.lsp.buf.references, attach_opts)
       vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, attach_opts)
-      vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, attach_opts)
-      vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, attach_opts)
-      vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-        attach_opts)
       vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, attach_opts)
       vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, attach_opts)
       vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, attach_opts)
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, attach_opts)
-      vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, attach_opts)
-      vim.keymap.set('n', 'so', require('telescope.builtin').lsp_references, attach_opts)
     end
 
     -- Enable the following language servers
@@ -45,6 +44,7 @@ return {
       lspconfig[lsp].setup {
         on_attach = on_attach,
         capabilities = capabilities,
+        handlers = handlers,
       }
     end
     -- Configuration for lua server
@@ -117,6 +117,10 @@ return {
         ghost_text = {
           hl_group = "CmpGhostText",
         },
+      },
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
       },
     }
   end

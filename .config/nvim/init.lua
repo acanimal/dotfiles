@@ -20,4 +20,10 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- Install plugins
 --
-require('lazy').setup('plugins')
+require('lazy').setup({
+  { import = 'plugins' },
+  { import = 'plugins.coding' },
+  { import = 'plugins.editor' },
+  { import = 'plugins.treesitter' },
+  { import = 'plugins.ui' }
+})
