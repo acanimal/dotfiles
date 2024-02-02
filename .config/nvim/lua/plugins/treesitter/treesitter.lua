@@ -1,14 +1,11 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  event = { "BufReadPre", "BufNewFile" },
-  dependencies = {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-  },
-  keys = {
-    { "<c-space>", desc = "Increment selection" },
-    { "<bs>",      desc = "Decrement selection", mode = "x" },
-  },
+  -- dependencies = {
+  --   "nvim-treesitter/nvim-treesitter-textobjects",
+  -- },
+  build = function()
+    require("nvim-treesitter.install").update({ with_sync = true })
+  end,
   config = function()
     require('nvim-treesitter.configs').setup({
       highlight = { enable = true },
