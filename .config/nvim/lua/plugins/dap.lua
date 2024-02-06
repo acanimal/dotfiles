@@ -25,7 +25,7 @@ return {
     vim.keymap.set('n', '<Leader>du', function() dap.step_out() end, { desc = 'Debug step out' })
     vim.keymap.set('n', '<Leader>db', function() dap.toggle_breakpoint() end, { desc = 'Debug toggle breakpoint' })
     vim.keymap.set('n', '<Leader>dB', function() dap.set_breakpoint() end, { desc = 'Debug set breakpoint' })
-    vim.keymap.set('n', '<Leader>dlp', function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+    vim.keymap.set('n', '<Leader>dk', function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
       { desc = 'Debug set breackpoint with log message' })
     vim.keymap.set('n', '<Leader>dr', function() dap.repl.open() end, { desc = 'Debug open REPL' })
     vim.keymap.set('n', '<Leader>dR', function() dap.repl.close() end, { desc = 'Debug close REPL' })
@@ -51,12 +51,12 @@ return {
     dapvscode.setup({
       debugger_path = require('mason-registry').get_package('js-debug-adapter'):get_install_path(),
       debugger_cmd = { "js-debug-adapter" },
-      adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },                          -- which adapters to register in nvim-dap
+      adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
       log_file_path = require('mason-registry').get_package('js-debug-adapter'):get_install_path() ..
-      "/dap_vscode_js.log",                                                                                                 -- Path for file logging
-      log_file_level = vim.log.levels.DEBUG,                                                                                -- Logging level for output to file. Set to false to disable file logging.
+          "/dap_vscode_js.log",                                                                    -- Path for file logging
+      log_file_level = vim.log.levels.DEBUG,                                                       -- Logging level for output to file. Set to false to disable file logging.
       log_console_level = vim.log.levels
-      .DEBUG                                                                                                                -- Logging level for output to console. Set to false to disable console output.
+          .DEBUG                                                                                   -- Logging level for output to console. Set to false to disable console output.
     })
 
     -- We need to redefine pwd-node adapter due some issue with vscode-js-debug
