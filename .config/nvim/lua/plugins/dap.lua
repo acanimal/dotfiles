@@ -2,8 +2,8 @@ return {
   "mfussenegger/nvim-dap",
   dependencies = {
     'theHamsta/nvim-dap-virtual-text',
-    'rcarriga/nvim-dap-ui',
-    'mxsdev/nvim-dap-vscode-js'
+    'mxsdev/nvim-dap-vscode-js',
+    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
   },
   config = function()
     local dap = require("dap")
