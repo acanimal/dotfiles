@@ -99,6 +99,7 @@ return {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'vim-dadbod-completion' }
       },
       formatting = {
         format = lspkind.cmp_format({

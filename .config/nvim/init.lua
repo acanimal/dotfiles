@@ -1,5 +1,6 @@
 require('options')
 require('keymaps')
+require('terminal')
 
 --
 -- install lazy.vim if not installed
