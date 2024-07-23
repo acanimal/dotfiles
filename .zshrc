@@ -107,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Add dotfiles alias configuration
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias gitprune="git fetch --all --prune; git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D;"
 
 # Add doomemacs to the path
 export PATH="$HOME/.config/emacs/bin:$PATH"
