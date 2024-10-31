@@ -3,7 +3,7 @@ local mux = wezterm.mux
 local action = wezterm.action
 local config = {}
 
-config.color_scheme = "Batman"
+config.color_scheme = "iTerm2 Dark Background"
 config.enable_scroll_bar = true
 config.font = wezterm.font("Hack Nerd Font Mono")
 config.font_size = 13
