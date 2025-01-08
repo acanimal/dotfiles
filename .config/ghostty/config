@@ -3,3 +3,5 @@ theme=tokyonight_night
 # This options is needed for spanish character ñ
 macos-option-as-alt=false
 
+unfocused-split-fill = #500028
+
