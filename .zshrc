@@ -113,7 +113,7 @@ export PATH="/usr/local/sbin:$PATH"
 # Add dotfiles alias configuration
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # Prune git branches
-alias gitprune="git fetch --all --prune; git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D;"
+alias gitprune="git fetch --all --prune && git branch -vv | awk '/: gone]/{print \$1}' | xargs git branch -D"
 
 # fnm config
 eval "$(fnm env --use-on-cd --shell zsh)"
