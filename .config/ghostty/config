@@ -1,4 +1,4 @@
-theme = tokyonight_night
+theme = iTerm2 Default
 
 # This options is needed for spanish character ñ
 macos-option-as-alt = false
@@ -7,5 +7,5 @@ macos-option-as-alt = false
 unfocused-split-fill = #500028
 
 mouse-hide-while-typing = true
-font-family = "Symbols Nerd Font Mono"
+# font-family = "Symbols Nerd Font Mono"
 
