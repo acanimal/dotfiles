@@ -6,6 +6,8 @@ macos-option-as-alt = false
 # This fix an issue with splitted windows separator
 unfocused-split-fill = #500028
 
+cursor-style = block
+cursor-style-blink = true
 mouse-hide-while-typing = true
 # font-family = "Symbols Nerd Font Mono"
 
