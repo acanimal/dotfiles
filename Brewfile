@@ -4,6 +4,7 @@ brew "ripgrep"
 brew "fd"
 brew "fzf"
 brew "fnm"
+brew "tmux"
 brew "sst/tap/opencode"
 
 # Apps
