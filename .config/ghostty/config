@@ -9,5 +9,6 @@ unfocused-split-fill = #500028
 cursor-style = block
 cursor-style-blink = true
 mouse-hide-while-typing = true
-# font-family = "Symbols Nerd Font Mono"
 
+# font-family = "Symbols Nerd Font Mono"
+font-size = 14
