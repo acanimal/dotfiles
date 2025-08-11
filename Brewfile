@@ -6,8 +6,9 @@ brew "fzf"
 brew "fnm"
 brew "tmux"
 brew "tpm" # tmux plugin manager
-brew "sst/tap/opencode"
 brew "neovim"
+brew "nb"
+tap "opencode"
 
 # Apps
 cask "slack"
