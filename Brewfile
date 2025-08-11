@@ -5,13 +5,15 @@ brew "fd"
 brew "fzf"
 brew "fnm"
 brew "tmux"
+brew "tpm" # tmux plugin manager
 brew "sst/tap/opencode"
+brew "neovim"
 
 # Apps
-brew "neovim"
 cask "slack"
 cask "spotify"
 cask "whatsapp"
+cask "cursor"
 
 # Fonts
 cask "font-cascadia-code"
