@@ -8,7 +8,8 @@ brew "tmux"
 brew "tpm" # tmux plugin manager
 brew "neovim"
 brew "nb"
-tap "opencode"
+tap "charmbracelet/tap"
+brew "crush"
 
 # Apps
 cask "slack"
