@@ -10,12 +10,20 @@ brew "neovim"
 brew "nb"
 tap "charmbracelet/tap"
 brew "crush"
+brew "powerlevel10k"
+
+# docker
+brew "docker"
+brew "docker-compose"
 
 # Apps
+cask "ghostty"
 cask "slack"
 cask "spotify"
 cask "whatsapp"
 cask "cursor"
+cask "visual-studio-code"
+cask "postico"
 
 # Fonts
 cask "font-cascadia-code"
