@@ -22,7 +22,6 @@ cask "spotify"
 cask "whatsapp"
 cask "cursor"
 cask "visual-studio-code"
-cask "postico"
 
 # Fonts
 cask "font-cascadia-code"
