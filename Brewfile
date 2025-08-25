@@ -13,8 +13,7 @@ brew "crush"
 brew "powerlevel10k"
 
 # docker
-brew "docker"
-brew "docker-compose"
+cask "docker"
 
 # Apps
 cask "ghostty"
