@@ -71,7 +71,9 @@ export ZSH="/Users/antonio/.oh-my-zsh"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
+
+# starship
+eval "$(starship init zsh)"
 
 # fnm config
 eval "$(fnm env --use-on-cd --shell zsh)"
