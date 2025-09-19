@@ -19,6 +19,7 @@ cask "whatsapp"
 cask "cursor"
 cask "visual-studio-code"
 cask "docker"
+cask "appcleaner"
 
 # Fonts
 cask "font-cascadia-code"
