@@ -8,6 +8,7 @@ brew "tmux"
 brew "tpm" # tmux plugin manager
 brew "neovim"
 brew "starship"
+brew "pnpm"
 
 # Apps
 cask "google-chrome"

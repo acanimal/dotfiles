@@ -1,16 +1,16 @@
-theme = iTerm2 Default
-
-# This options is needed for spanish character ñ
-macos-option-as-alt = false
-
-# This fix an issue with splitted windows separator
-unfocused-split-fill = #BBBBBB
-
 cursor-style = block
 cursor-style-blink = true
-mouse-hide-while-typing = true
-
-split-divider-color = #66FF66
+desktop-notifications = false
 
 # font-family = "Symbols Nerd Font Mono"
 font-size = 14
+
+# This options is needed for spanish character ñ
+macos-option-as-alt = false
+mouse-hide-while-typing = true
+
+split-divider-color = #66FF66
+# This fix an issue with splitted windows separator
+unfocused-split-fill = #BBBBBB
+
+theme = iTerm2 Default
