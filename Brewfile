@@ -9,6 +9,9 @@ brew "tpm" # tmux plugin manager
 brew "neovim"
 brew "starship"
 brew "pnpm"
+brew "rustup"
+tap "charmbracelet/tap"
+brew "charmbracelet/tap/crush"
 
 # Apps
 cask "google-chrome"

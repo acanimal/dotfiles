@@ -81,7 +81,7 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:$(brew --prefix rustup)/bin:$(brew --prefix)/bin:$PATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
