@@ -10,8 +10,8 @@ brew "neovim"
 brew "starship"
 brew "pnpm"
 brew "rustup"
-tap "charmbracelet/tap"
-brew "charmbracelet/tap/crush"
+tap "sst/tap"
+brew "sst/tap/opencode"
 
 # Apps
 cask "google-chrome"
@@ -21,7 +21,7 @@ cask "spotify"
 cask "whatsapp"
 cask "cursor"
 cask "visual-studio-code"
-cask "docker"
+cask "docker-desktop"
 cask "appcleaner"
 
 # Fonts
