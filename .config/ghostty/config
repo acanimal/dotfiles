@@ -7,7 +7,7 @@ cursor-style-blink = true
 desktop-notifications = false
 
 # font-family = "Symbols Nerd Font Mono"
-font-size = 14
+font-size = 13
 
 # This options is needed for spanish character ñ
 macos-option-as-alt = false
