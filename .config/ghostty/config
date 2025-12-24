@@ -1,8 +1,8 @@
 app-notifications = false
 
-cursor-color = cell-foreground
-cursor-style = block
+# cursor-color = cell-foreground
 cursor-style-blink = true
+cursor-style = block
 
 desktop-notifications = false
 
@@ -19,4 +19,4 @@ shell-integration-features = no-cursor
 # This fix an issue with splitted windows separator
 unfocused-split-fill = #BBBBBB
 
-theme = iTerm2 Default
+theme = "GitHub Dark Default"

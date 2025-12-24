@@ -4,8 +4,6 @@ brew "ripgrep"
 brew "fd"
 brew "fzf"
 brew "fnm"
-brew "tmux"
-brew "tpm" # tmux plugin manager
 brew "neovim"
 brew "starship"
 brew "pnpm"
