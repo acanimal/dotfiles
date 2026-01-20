@@ -1,0 +1,6 @@
+[mgr]
+sort_by="natural"
+sort_sensitive=true
+sort_dir_first=true
+line_mode="size_mtime_permissions_owner"
+show_hidden=true

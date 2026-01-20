@@ -1,9 +1,20 @@
+# Ignore everything in .config
 *
+
+# Allow the gitignore itself
 !.gitignore
 
-!./customvim/
-!./ghostty/
-!./lazyvim/
-!./wezterm/
-!./yazi/
+# Allow files
 !starship.toml
+
+# Allow directories and THEIR content
+!customvim/
+!customvim/**
+!ghostty/
+!ghostty/**
+!lazyvim/
+!lazyvim/**
+!wezterm/
+!wezterm/**
+!yazi/
+!yazi/**

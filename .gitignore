@@ -1,7 +1,13 @@
+# Ignore everything
 *
+
+# Allow the gitignore itself
 !.gitignore
 
+# ALLOW directories (this lets Git look inside them)
 !.config/
+
+# Allow specific files
 !Brewfile
 !README.md
 !setup.sh
