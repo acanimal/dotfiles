@@ -1,0 +1,6 @@
+*
+!.gitignore
+
+!Brewfile
+!README.md
+!setup.sh

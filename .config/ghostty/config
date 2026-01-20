@@ -1,16 +1,17 @@
 app-notifications = false
+desktop-notifications = false
 
 # cursor-color = cell-foreground
-cursor-style-blink = true
 cursor-style = block
-
-desktop-notifications = false
+cursor-style-blink = true
 
 # font-family = "Symbols Nerd Font Mono"
 font-size = 13
 
-# This options is needed for spanish character ñ
-macos-option-as-alt = false
+# This options is needed for writing spanish characters like ñ using the alt key
+macos-option-as-alt = true
+
+# Hide mouse while writing
 mouse-hide-while-typing = true
 
 split-divider-color = #66FF66
@@ -20,3 +21,6 @@ shell-integration-features = no-cursor
 unfocused-split-fill = #BBBBBB
 
 theme = "GitHub Dark Default"
+
+# Rename tabs
+keybind = cmd+r=prompt_surface_title
