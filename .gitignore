@@ -1,6 +1,7 @@
 *
 !.gitignore
 
+!.config/
 !Brewfile
 !README.md
 !setup.sh

@@ -1,3 +1,14 @@
+########################################
+# zinit
+########################################
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+########################################
+# oh-my-zsh
+########################################
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/antonio/.oh-my-zsh"
 
@@ -68,9 +79,24 @@ export ZSH="/Users/antonio/.oh-my-zsh"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
+
+########################################
+# Plugins
+########################################
+zinit wait lucid for \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+        zdharma-continuum/fast-syntax-highlighting \
+    blockf \
+        zsh-users/zsh-completions \
+    atload"!_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions
+
+########################################
+# User config
+########################################
 
 # starship
 eval "$(starship init zsh)"
@@ -101,8 +127,14 @@ export EDITOR='nvim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Neovim aliases
+neobin="$(brew --prefix neovim)/bin/nvim"
+alias lvim="NVIM_APPNAME='lazyvim' $neobin"
+alias nvim="NVIM_APPNAME='customvim' $neobin"
+
 # Add dotfiles alias configuration
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 # Prune git branches
 alias gitprune="git fetch --all --prune && git branch -vv | awk '/: gone]/{print \$1}' | xargs git branch -D"
 

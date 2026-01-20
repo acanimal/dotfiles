@@ -1,0 +1,9 @@
+*
+!.gitignore
+
+!./customvim/
+!./ghostty/
+!./lazyvim/
+!./wezterm/
+!./yazi/
+!starship.toml
