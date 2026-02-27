@@ -12,15 +12,16 @@ tap "sst/tap"
 brew "sst/tap/opencode"
 
 # Apps
-cask "google-chrome"
+cask "appcleaner"
+cask "docker-desktop"
 cask "ghostty"
+cask "google-chrome"
+cask "postico"
 cask "slack"
 cask "spotify"
-cask "whatsapp"
-cask "cursor"
 cask "visual-studio-code"
-cask "docker-desktop"
-cask "appcleaner"
+cask "wezterm"
+cask "whatsapp"
 
 # Fonts
 cask "font-cascadia-code"
