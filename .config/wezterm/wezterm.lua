@@ -7,8 +7,12 @@ local config = wezterm.config_builder() ---@type Config
 config.initial_cols = 80
 config.initial_rows = 25
 
-config.font_size = 14
-config.font = wezterm.font("Hack Nerd Font Mono")
+config.font_size = 15
+-- config.font = wezterm.font("Hack Nerd Font Mono")
+-- config.font = wezterm.font("Iosevka Nerd Font")
+config.font = wezterm.font("FiraMono Nerd Font")
+-- config.font = wezterm.font("MesloLGS Nerd Font")
+
 -- config.color_scheme = "tokyonight_night"
 config.colors = {
 	cursor_bg = "#7aa2f7",
