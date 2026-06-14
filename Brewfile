@@ -1,3 +1,6 @@
+# Taps
+tap "anomalyco/tap", trusted: true
+
 # CLI utils
 brew "fd"
 brew "fnm"
@@ -10,10 +13,9 @@ brew "ollama"
 brew "pnpm"
 brew "ripgrep"
 brew "rustup"
-brew "sst/tap/opencode"
+brew "anomalyco/tap/opencode"
 brew "starship"
 brew "yazi"
-tap "sst/tap"
 
 # Apps
 cask "appcleaner"

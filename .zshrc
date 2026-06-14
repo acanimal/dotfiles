@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # Plugins
 ########################################
 zinit wait lucid for \
-    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    atinit"zmodload -F zsh/param/private b:private; ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
         zdharma-continuum/fast-syntax-highlighting \
     blockf \
         zsh-users/zsh-completions \
