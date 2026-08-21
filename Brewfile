@@ -1,5 +1,6 @@
 # Taps
 tap "anomalyco/tap", trusted: true
+tap "d12frosted/emacs-plus", trusted: true
 
 # CLI utils
 brew "fd"
@@ -9,7 +10,6 @@ brew "git"
 brew "lazygit"
 brew "mole"
 brew "neovim"
-brew "ollama"
 brew "pnpm"
 brew "ripgrep"
 brew "rustup"
@@ -22,7 +22,7 @@ cask "appcleaner"
 cask "calibre"
 cask "claude-code"
 cask "docker-desktop"
-cask "emacs-app"
+cask "emacs-plus-app"
 cask "ghostty"
 cask "google-chrome"
 cask "postico"
